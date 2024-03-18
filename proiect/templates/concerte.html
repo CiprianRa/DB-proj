@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #557;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-color: white;
+    text-align: center;
+}
+th, td {
+    padding: 15px;
+}
+
+.radiotext {
+    margin: 10px 10px 0px 0px;
+}
+
+</style>
+<script>
+	function myFunction() {	
+  var rate_value = document.getElementsByName('id_dirijor');
+
+	if(rate_value[0]){
+	alert(rate_value[0].value);
+	document.getElementsByName('id_concert').value=rate_value[0].value;
+	alert(document.getElementsByName('id_concert').value);
+  }}
+</script>
+</head>
+<body>
+
+  <a href="dirijori"><button class="tablink" >dirijori</button></a>
+  <a href="concerte"><button class="tablink" style="background:rgb(70,130,180); color: white">concerte</button></a>
+  <a href="muzicieni"><button class="tablink">muzicieni</button></a>
+  <a href="piese"><button class="tablink">piese</button></a>
+  <a href="instrumente"><button class="tablink">instrumente</button></a>
+  <a href="participari"><button class="tablink">participari</button></a>
+  <a href="repertoriu"><button class="tablink">repertoriu</button></a>
+  
+  <div id="Consilieri" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">concerte</h1>
+  		<br><br>
+      <div class="btn-group">
+        <a href="addConcert"><button type="button" class="btn btn-primary" >Adauga concert</button></a>
+        <br>
+		<br>
+      </div>
+      <br><br><br><br>
+  		<table style="width:70%">
+  			<tr>
+    			<th>ID</th>
+    			<th>nume concert</th> 
+    			<th>data</th>
+    			<th>oras</th>
+                <th>id dirijor</th>
+  			</tr>
+        {% for concert in concerte %}
+  			<tr>
+    			<td>{{concert["id_concert"]}}</td>
+    			<td>{{concert["nume_concert"]}}</td> 
+    			<td>{{concert["data"]}}</td>
+    			<td>{{concert["oras"]}}</td>
+				<td>{{concert["id_dirijor"]}}</td>
+         <td>
+          <form class="was-validated" method="POST" action="/delConcert">
+            <button type="submit" name="id_concert" value="{{concert['id_concert']}}" class="btn btn-primary">Sterge concert</button>
+         </td>
+  			</tr>
+  			{% endfor %}
+		  </table>
+      <br><br><br>
+  </center>
+
+</body>
+</html> 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #557;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Consilieri {background-color: rgb(22,22,22);}
+#Partide {background-color: rgb(22,22,22);}
+#Comisii {background-color: rgb(22,22,22);}
+#Pontaje {background-color: rgb(22,22,22);}
+</style>
+</head>
+<body>
+
+   <a href="dirijori"><button class="tablink" >dirijori</button></a>
+   <a href="concerte"><button class="tablink" >concerte</button></a>
+   <a href="muzicieni"><button class="tablink">muzicieni</button></a>
+  <a href="piese"><button class="tablink">piese</button></a>
+  <a href="instrumente"><button class="tablink">instrumente</button></a>
+  <a href="participari"><button class="tablink" style="background:rgb(70,130,180); color: white">participari</button></a>
+  <a href="repertoriu"><button class="tablink" >repertoriu</button></a>
+
+  <div id="repertoriu" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Adauga participare</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="/addParticipare">
+        <div class="row">
+			<!--<div class="col-md-6 mb-3">
+            <label for="validationServer01">Employee id</label>
+            <input name="employee_id" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 22 " required>
+			</div>-->
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">id_concert</label>
+            <input name="id_muzician" type="number" class="form-control is-valid" id="validationServer01" required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">id_piesa</label>
+            <input name="id_concert" type="number" class="form-control is-valid" id="validationServer01" required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">ordine interpretare</label>
+            <input name="loc_scena" type="number" class="form-control is-valid" id="validationServer01" required>
+      </div>
+        <button class="btn btn-primary" type="submit">Adauga Participare</button>
+      </form>
+
+  </center>
+</script>
+
+</body>
+</html> 

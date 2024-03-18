@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #557;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Consilieri {background-color: rgb(22,22,22);}
+#Partide {background-color: rgb(22,22,22);}
+#Comisii {background-color: rgb(22,22,22);}
+#Pontaje {background-color: rgb(22,22,22);}
+</style>
+</head>
+<body>
+
+   <a href="dirijori"><button class="tablink" >dirijori</button></a>
+   <a href="concerte"><button class="tablink" style="background:rgb(70,130,180); color: white">concerte</button></a>
+   <a href="muzicieni"><button class="tablink" >muzicieni</button></a>
+  <a href="piese"><button class="tablink">piese</button></a>
+  <a href="instrumente"><button class="tablink">instrumente</button></a>
+  <a href="participari"><button class="tablink">participari</button></a>
+  <a href="repertoriu"><button class="tablink">repertoriu</button></a>
+
+  <div id="concerte" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Adauga concert</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="{{url_for('add_conc')}}">
+        <div class="row">
+			<!--<div class="col-md-6 mb-3">
+            <label for="validationServer01">Employee id</label>
+            <input name="employee_id" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 22 " required>
+			</div>-->
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">nume concert</label>
+            <input name="nume_concert" type="text" class="form-control is-valid" id="validationServer01" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">data</label>
+            <input name="data" type="date" class="form-control is-valid" id="validationServer01" required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">oras</label>
+            <input name="oras" type="text" class="form-control is-valid" id="validationServer01" required>
+          </div>
+      </form>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="validationServer01">id dirijor</label>
+          <select name="dirijor" class="custom-select d-block my-3">
+            <option value="">Alege dirijor</option>
+            {% for dirijor in dirijori %}
+            <option value="{{dirijor[0]}}">{{dirijor[1]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Adauga dirijor</button>
+  </center>
+
+  <script type="text/javascript">
+  var $dropdown1 = $("select[name='dropdown1']");
+  var $dropdown2 = $("select[name='dropdown2']");
+  var $dropdown3 = $("select[name='dropdown3']");
+  var disabled = [];
+
+  $dropdown1.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown1.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+    
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown2.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown3.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+
+  $dropdown2.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown2.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+    
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown1.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown3.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+
+  $dropdown3.change(function() {
+    if(disabled.length == 3){
+      $disabled=[];
+    }
+    $dropdown3.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    disabled.push(selectedItem);
+    
+    for (var i = 0; i < disabled.length; ++i){
+        $dropdown1.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+        $dropdown2.find('option[value="' + selectedItem[i] + '"]').prop("disabled", true);
+    }
+  });
+  /*
+  $dropdown1.change(function() {
+    $dropdown2.children().show();
+    var selectedItem = $($dropdown1).val();
+    if (selectedItem != "")
+      $('select[name="dropdown2"] option[value="' + selectedItem + '"]').hide();
+  });
+  
+  $dropdown2.change(function() {
+    $dropdown1.children().show();
+    var selectedItem = $($dropdown2).val();
+    if (selectedItem != "")
+      $('select[name="dropdown1"] option[value="' + selectedItem + '"]').hide();
+  });
+
+  $dropdown3.change(function() {
+    $dropdown1.children().show();
+    $dropdown2.children().show();
+    var selectedItem1 = $($dropdown1).val();
+    var selectedItem2 = $($dropdown2).val();
+    if (selectedItem1 != "" || selectedItem2 != ""){
+      $('select[name="dropdown3"] option[value="' + selectedItem1 + '"]').hide();
+      $('select[name="dropdown3"] option[value="' + selectedItem2 + '"]').hide();
+    }
+  });
+  */
+</script>
+
+</body>
+</html> 
